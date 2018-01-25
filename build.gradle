@@ -1,0 +1,28 @@
+group 'rip.deadcode'
+version '0.1'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile(
+            'io.ratpack:ratpack-guice:1.5.1',
+            'org.thymeleaf:thymeleaf:3.0.9.RELEASE',
+            'javax.servlet:javax.servlet-api:3.1.0',
+    )
+    testCompile(
+            'junit:junit:4.12',
+            'com.google.truth:truth:0.36',
+            'org.mockito:mockito-core:2.8.47',
+
+            'org.slf4j:jul-to-slf4j:1.7.25', // Guava uses java.util.logging
+            'ch.qos.logback:logback-classic:1.2.3',
+
+            'io.ratpack:ratpack-test:1.5.1',
+    )
+}
