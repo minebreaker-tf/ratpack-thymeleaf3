@@ -1,7 +1,18 @@
-group 'rip.deadcode'
-version '0.1'
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+    }
+}
 
 apply plugin: 'java'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
+
+group 'rip.deadcode'
+version '0.1'
 
 sourceCompatibility = 1.8
 
@@ -25,4 +36,42 @@ dependencies {
 
             'io.ratpack:ratpack-test:1.5.1',
     )
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives jar
+    archives sourcesJar
+    archives javadocJar
+}
+
+bintray {
+    user = project.hasProperty('BINTRAY_USER') ? BINTRAY_USER : ''
+    key = project.hasProperty('BINTRAY_KEY') ? BINTRAY_KEY : ''
+    pkg {
+        repo = 'test'
+        name = 'ratpack-thymeleaf3'
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/minebreaker-tf/ratpack-thymeleaf3.git'
+    }
+    publications = ['bintrayPublication']
+}
+
+publishing {
+    publications {
+        bintrayPublication(MavenPublication) {
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+        }
+    }
 }
