@@ -12,7 +12,7 @@ apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
 
 group 'rip.deadcode'
-version '0.1'
+version '0.1.1'
 
 sourceCompatibility = 1.8
 
@@ -22,19 +22,19 @@ repositories {
 
 dependencies {
     compile(
-            'io.ratpack:ratpack-guice:1.5.1',
+            'io.ratpack:ratpack-guice:1.5.2',
             'org.thymeleaf:thymeleaf:3.0.9.RELEASE',
             'javax.servlet:javax.servlet-api:3.1.0',
     )
     testCompile(
             'junit:junit:4.12',
-            'com.google.truth:truth:0.36',
-            'org.mockito:mockito-core:2.8.47',
+            'com.google.truth:truth:0.39',
+            'org.mockito:mockito-core:2.15.0',
 
             'org.slf4j:jul-to-slf4j:1.7.25', // Guava uses java.util.logging
             'ch.qos.logback:logback-classic:1.2.3',
 
-            'io.ratpack:ratpack-test:1.5.1',
+            'io.ratpack:ratpack-test:1.5.2',
     )
 }
 
