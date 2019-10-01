@@ -1,3 +1,5 @@
+Deprecated - use official ratpack-thymeleaf module!
+
 # ratpack-thymeleaf3
 
 Ratpack module to use Thymeleaf 3.
